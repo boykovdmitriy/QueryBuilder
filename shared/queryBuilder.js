@@ -54,10 +54,10 @@ export class QueryBuilder {
 
   changeNode (nodeId, newNode) {
     const value = this.nodes.find(x => x.id === nodeId)
-    const oldNode = value.node;
+    const oldNode = value.node
     value.node = newNode
     value.id = newNode.id
-    if(value.parent) {
+    if (value.parent) {
       const index = value.parent.rules.indexOf(oldNode)
       value.parent.rules[index] = newNode
     }
