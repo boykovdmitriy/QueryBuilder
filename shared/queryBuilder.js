@@ -62,6 +62,7 @@ export class QueryBuilder {
       value.parent.rules[index] = newNode
     } else {
       this.config = newNode
+      this.nodes = this.__buildNodes(this.config)
     }
   }
 
