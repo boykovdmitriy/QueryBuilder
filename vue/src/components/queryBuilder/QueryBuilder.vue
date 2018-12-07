@@ -1,17 +1,17 @@
 <template>
-    <section>
-        <QueryBuilderGroup
-                @onQueryTreeChanged="handleQueryTreeChanged"
-        />
-        <section>{{JSON.stringify(queryTree)}}</section>
-    </section>
+    <QueryBuilderGroup
+            :tree="queryTree"
+            @onNodeChanged="handleNodeChanged"
+            @onNodeRemove="handleNodeRemove"
+            @onRuleAdded="handleRuleAdded"
+            @onGroupAdded="handleGroupAdded"
+            :isRoot="true"
+    />
 </template>
 
 <script>
   import QueryBuilderGroup from './QueryBuilderGroup.vue'
-  import QueryBuilderHOC from './QueryBuilderHOC'
-
-  const wrappedQueryBuilder = QueryBuilderHOC(QueryBuilderGroup)
+  import { QueryBuilder } from '../../queryBuilder'
 
   export default {
     name: 'QueryBuilder',
@@ -20,13 +20,42 @@
         queryTree: {}
       }
     },
+    props: {
+      onQueryTreeChanged: Function,
+      config: Object
+    },
     methods: {
-      handleQueryTreeChanged: function (tree) {
-        this.queryTree = tree
+      handleNodeChanged: function (id, newNode) {
+        this.queryBuilder.changeNode(id, newNode)
+        this.handleTreeChanged()
+      },
+      handleNodeRemove: function (id) {
+        this.queryBuilder.removeNode(id)
+        this.handleTreeChanged()
+      },
+      handleGroupAdded: function (id) {
+        this.queryBuilder.addGroup(id)
+        this.handleTreeChanged()
+      },
+      handleRuleAdded: function (id) {
+        this.queryBuilder.addNode(id)
+        this.handleTreeChanged()
+      },
+      handleTreeChanged: function () {
+        const queryTree = this.queryBuilder.getObjectTree()
+        this.queryTree = queryTree
+
+        this.$emit('onQueryTreeChanged', queryTree)
       },
     },
     components: {
-      QueryBuilderGroup: wrappedQueryBuilder
+      QueryBuilderGroup
+    },
+    mounted: function () {
+      this.handleTreeChanged()
+    },
+    created: function () {
+      this.queryBuilder = new QueryBuilder(this.config)
     }
   }
 </script>
