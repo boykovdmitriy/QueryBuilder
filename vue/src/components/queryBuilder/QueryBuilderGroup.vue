@@ -11,10 +11,9 @@
             <Button v-if="!isRoot" @onClick="handleNodeRemove">x</Button>
         </section>
         <section>
-            <section v-for="rule in tree.rules">
+            <section v-for="rule in tree.rules" :key="rule.id">
                 <template v-if="!rule.rules">
                     <QueryBuilderRule
-                            :key="rule.id"
                             :rule="rule"
                             @onNodeChanged="handleNodeChanged"
                             @onNodeRemove="handleNodeRemove"
@@ -22,7 +21,6 @@
                 </template>
                 <template v-if="rule.rules">
                     <QueryBuilderGroup
-                            :key="rule.id"
                             :tree="rule"
                             @onNodeRemove="handleNodeRemove"
                             @onNodeChanged="handleNodeChanged"
