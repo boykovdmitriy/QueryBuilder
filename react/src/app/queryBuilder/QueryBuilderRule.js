@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Select } from '../../components/select/Select'
-import { ALLOWED_QUERY_FIELDS, ALLOWED_QUERY_OPERATORS } from '../../queryBuilder'
+import { ALLOWED_QUERY_FIELDS, ALLOWED_QUERY_OPERATORS } from '../../../../shared/queryBuilder'
 import { Button } from '../../components/button/Button'
 
 export class QueryBuilderRule extends PureComponent {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { QueryBuilder } from '../../queryBuilder'
+import { QueryBuilder } from '../../../../shared/queryBuilder'
 
 export const QueryBuilderHOC = (WrappedComponent) => {
   return class extends React.PureComponent {

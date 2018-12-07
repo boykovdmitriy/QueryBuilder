@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { ALLOWED_QUERY_COMBINATORS } from '../../queryBuilder'
+import { ALLOWED_QUERY_COMBINATORS } from '../../../../shared/queryBuilder'
 import { Select } from '../../components/select/Select'
 import { Button } from '../../components/button/Button'
 import { QueryBuilderRule } from './QueryBuilderRule'
