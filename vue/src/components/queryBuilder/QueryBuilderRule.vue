@@ -40,7 +40,7 @@
     methods: {
       handleFieldChanged: function (value) {
         const {rule}  = this;
-        this.$emit('onNodeChanged', {
+        this.$emit('onNodeChanged', rule.id, {
           ...rule,
           field: value,
         })
@@ -51,14 +51,14 @@
       },
       handleOperatorChanged: function (value) {
         const {rule}  = this;
-        this.$emit('onNodeChanged', {
+        this.$emit('onNodeChanged', rule.id,{
           ...rule,
           operator: value,
         })
       },
       handleValueChanged: function ({target: {value}}) {
         const {rule}  = this;
-        this.$emit('onNodeChanged', {
+        this.$emit('onNodeChanged', rule.id, {
           ...rule,
           value,
         })
