@@ -60,6 +60,8 @@ export class QueryBuilder {
     if (value.parent) {
       const index = value.parent.rules.indexOf(oldNode)
       value.parent.rules[index] = newNode
+    } else {
+      this.config = newNode
     }
   }
 

@@ -11,7 +11,7 @@
 
 <script>
   import QueryBuilderGroup from './QueryBuilderGroup.vue'
-  import { QueryBuilder } from '../../queryBuilder'
+  import { QueryBuilder } from '../../../../shared/queryBuilder'
 
   export default {
     name: 'QueryBuilder',

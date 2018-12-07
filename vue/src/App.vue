@@ -1,12 +1,17 @@
 <template>
-    <div id="app">
-        <section>
+    <div
+            id="app"
+            class="app"
+    >
+        <section class="app__query-builder">
             <QueryBuilder
                     @onQueryTreeChanged="handleTreeChanged"
             />
         </section>
-        <section>
-            {{JSON.stringify(tree)}}
+        <section class="app__query-tree">
+            <pre>
+               {{tree | pretty}}
+            </pre>
         </section>
     </div>
 </template>
@@ -28,17 +33,27 @@
       handleTreeChanged: function (tree) {
         this.tree = tree
       }
+    },
+    filters: {
+      pretty: function(value) {
+        return JSON.stringify(value, null, 2);
+      }
     }
   }
 </script>
 
-<style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
+<style scoped>
+    .app {
+        display: flex;
+        flex-direction: row;
     }
+
+    .app__query-tree,
+    .app__query-builder {
+        width: 49%;
+    }
+    .app__query-builder {
+        padding-left: 1rem;
+    }
+
 </style>

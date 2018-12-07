@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import { ALLOWED_QUERY_FIELDS, ALLOWED_QUERY_OPERATORS } from '../../queryBuilder'
+  import { ALLOWED_QUERY_FIELDS, ALLOWED_QUERY_OPERATORS } from '../../../../shared/queryBuilder'
   import Select from '../select/Select.vue'
   import Button from '../button/Button.vue'
 
