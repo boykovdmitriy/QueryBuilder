@@ -23,24 +23,32 @@ export class QueryBuilderGroup extends PureComponent {
 
     if (rule.rules) {
       return (
-        <QueryBuilderGroup
+        <section
           key={rule.id}
-          onNodeChanged={onNodeChanged}
-          onNodeRemove={onNodeRemove}
-          onRuleAdded={onRuleAdded}
-          onGroupAdded={onGroupAdded}
-          queryTree={rule}
-        />
+          className="query-builder-group__rule"
+        >
+          <QueryBuilderGroup
+            onNodeChanged={onNodeChanged}
+            onNodeRemove={onNodeRemove}
+            onRuleAdded={onRuleAdded}
+            onGroupAdded={onGroupAdded}
+            queryTree={rule}
+          />
+        </section>
       )
     }
 
     return (
-      <QueryBuilderRule
-        onNodeChanged={onNodeChanged}
-        onNodeRemove={onNodeRemove}
-        rule={rule}
+      <section
         key={rule.id}
-      />
+        className="query-builder-group__rule"
+      >
+        <QueryBuilderRule
+          onNodeChanged={onNodeChanged}
+          onNodeRemove={onNodeRemove}
+          rule={rule}
+        />
+      </section>
     )
   }
 
@@ -57,8 +65,8 @@ export class QueryBuilderGroup extends PureComponent {
       }
     } = this.props
     return (
-      <section>
-        <section>
+      <section className="query-builder-group">
+        <section className="query-builder-group__content">
           <Select
             options={ALLOWED_QUERY_COMBINATORS}
             selectedValue={combinator}
@@ -70,9 +78,11 @@ export class QueryBuilderGroup extends PureComponent {
             !isRoot && <Button onClick={() => onNodeRemove(id)}>x</Button>
           }
         </section>
-        {
-          rules.map(this.renderRule)
-        }
+        <section className="query-builder-group__rules">
+          {
+            rules.map(this.renderRule)
+          }
+        </section>
       </section>
     )
   }

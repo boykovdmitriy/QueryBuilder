@@ -40,7 +40,7 @@ export class QueryBuilderRule extends PureComponent {
     } = this.props
 
     return (
-      <section>
+      <section className="query-builder-rule">
         <Select
           options={ALLOWED_QUERY_FIELDS}
           onChange={this.handleFieldChanged}

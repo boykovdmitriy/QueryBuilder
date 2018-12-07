@@ -11,24 +11,37 @@ export const QueryBuilderHOC = (WrappedComponent) => {
       }
     }
 
+    componentDidMount() {
+      const {onQueryTreeChanged} = this.props
+      const {queryTree} = this.state
+      onQueryTreeChanged(queryTree)
+    }
+
     handleNodeChanged = (id, newNode) => {
       this.queryBuilder.changeNode(id, newNode)
-      this.setState({queryTree: this.queryBuilder.getObjectTree()})
+      this.handleTreeChanged()
     }
 
     handleNodeRemove = (id) => {
       this.queryBuilder.removeNode(id)
-      this.setState({queryTree: this.queryBuilder.getObjectTree()})
+      this.handleTreeChanged()
     }
 
     handleRuleAdd = (id) => {
       this.queryBuilder.addNode(id)
-      this.setState({queryTree: this.queryBuilder.getObjectTree()})
+      this.handleTreeChanged()
     }
 
     handleGroupAdd = (id) => {
       this.queryBuilder.addGroup(id)
-      this.setState({queryTree: this.queryBuilder.getObjectTree()})
+      this.handleTreeChanged()
+    }
+
+    handleTreeChanged = () => {
+      const {onQueryTreeChanged} = this.props
+      const queryTree = this.queryBuilder.getObjectTree()
+      this.setState({queryTree})
+      onQueryTreeChanged(queryTree)
     }
 
     render () {

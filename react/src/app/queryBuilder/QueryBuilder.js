@@ -1,21 +1,20 @@
-import React, {PureComponent} from 'react';
-import {QueryBuilderGroup} from './QueryBuilderGroup'
-import {QueryBuilderHOC} from './QueryBuilderHOC'
+import React, { PureComponent } from 'react'
+import { QueryBuilderGroup } from './QueryBuilderGroup'
+import { QueryBuilderHOC } from './QueryBuilderHOC'
+import './QueryBuilder.css'
 
 class QueryBuilder extends PureComponent {
-  render() {
-    const {onNodeChanged, onNodeRemove, onRuleAdded, onGroupAdded, queryTree} = this.props;
+  render () {
+    const {onNodeChanged, onNodeRemove, onRuleAdded, onGroupAdded, queryTree} = this.props
     return (
-      <section>
-        <QueryBuilderGroup
-          onNodeChanged={onNodeChanged}
-          onNodeRemove={onNodeRemove}
-          onRuleAdded={onRuleAdded}
-          onGroupAdded={onGroupAdded}
-          queryTree={queryTree}
-          isRoot
-        />
-      </section>
+      <QueryBuilderGroup
+        onNodeChanged={onNodeChanged}
+        onNodeRemove={onNodeRemove}
+        onRuleAdded={onRuleAdded}
+        onGroupAdded={onGroupAdded}
+        queryTree={queryTree}
+        isRoot
+      />
     )
   }
 }
