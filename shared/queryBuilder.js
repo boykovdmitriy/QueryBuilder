@@ -54,9 +54,13 @@ export class QueryBuilder {
 
   changeNode (nodeId, newNode) {
     const value = this.nodes.find(x => x.id === nodeId)
+    const oldNode = value.node;
     value.node = newNode
     value.id = newNode.id
-    value.parent.rules = [...value.parent.rules.filter(x => x.id!==nodeId), newNode]
+    if(value.parent) {
+      const index = value.parent.rules.indexOf(oldNode)
+      value.parent.rules[index] = newNode
+    }
   }
 
   removeNode (nodeId) {
@@ -68,16 +72,15 @@ export class QueryBuilder {
   addNode (parentId) {
     const parentGroup = this.nodes.find(x => x.id === parentId)
     const rule = ruleFactory()
-    console.log(parentGroup);
     parentGroup.node.rules.push(rule)
-    this.nodes = [...this.nodes, this.__buildNode(rule, parentGroup)]
+    this.nodes = this.__buildNodes(this.config)
   }
 
   addGroup (parentId) {
     const parentGroup = this.nodes.find(x => x.id === parentId)
     const group = groupFactory()
     parentGroup.node.rules.push(group)
-    this.nodes = [...this.nodes, this.__buildNode(group, parentGroup)]
+    this.nodes = this.__buildNodes(this.config)
   }
 
   getObjectTree () {

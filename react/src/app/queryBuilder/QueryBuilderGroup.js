@@ -5,8 +5,12 @@ import { Button } from '../../components/button/Button'
 import { QueryBuilderRule } from './QueryBuilderRule'
 
 export class QueryBuilderGroup extends PureComponent {
-  handleGroupChanged = (value) => {
-    console.log(value)
+  handleCombinatorChanged = ({target: {value}}) => {
+    const {queryTree, onNodeChanged} = this.props
+    onNodeChanged(queryTree.id, {
+      ...queryTree,
+      combinator: value,
+    })
   }
 
   renderRule = (rule) => {
@@ -58,7 +62,7 @@ export class QueryBuilderGroup extends PureComponent {
           <Select
             options={ALLOWED_QUERY_COMBINATORS}
             selectedValue={combinator}
-            onChange={this.handleGroupChanged}
+            onChange={this.handleCombinatorChanged}
           />
           <Button onClick={() => onRuleAdded(id)}>+Rule</Button>
           <Button onClick={() => onGroupAdded(id)}>+Group</Button>

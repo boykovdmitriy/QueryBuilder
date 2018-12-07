@@ -4,16 +4,28 @@ import { ALLOWED_QUERY_FIELDS, ALLOWED_QUERY_OPERATORS } from '../../queryBuilde
 import { Button } from '../../components/button/Button'
 
 export class QueryBuilderRule extends PureComponent {
-  handleFieldChanged = (value) => {
-    console.log(value)
+  handleFieldChanged = ({target: {value}}) => {
+    const {rule, onNodeChanged} = this.props
+    onNodeChanged(rule.id, {
+      ...rule,
+      field: value,
+    })
   }
 
-  handleOperatorChanged = (value) => {
-    console.log(value)
+  handleOperatorChanged = ({target: {value}}) => {
+    const {rule, onNodeChanged} = this.props
+    onNodeChanged(rule.id, {
+      ...rule,
+      operator: value,
+    })
   }
 
-  handleValueChanged = (value) => {
-    console.log(value)
+  handleValueChanged = ({target: {value}}) => {
+    const {rule, onNodeChanged} = this.props
+    onNodeChanged(rule.id, {
+      ...rule,
+      value,
+    })
   }
 
   render () {
@@ -25,7 +37,7 @@ export class QueryBuilderRule extends PureComponent {
         value,
         id
       }
-    } = this.props;
+    } = this.props
 
     return (
       <section>
