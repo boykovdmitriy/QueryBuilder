@@ -6,7 +6,7 @@ class App extends Component {
   state = {}
 
   handleQueryTreeChanged = (tree) => {
-    this.setState({tree})
+    this.setState({tree: JSON.stringify(tree, null, 4)})
   }
 
   render() {
@@ -21,9 +21,11 @@ class App extends Component {
         <section
           className="app__query-tree"
         >
-          {
-            JSON.stringify(tree, null, 4)
-          }
+          <pre>
+            {
+              tree
+            }
+          </pre>
         </section>
       </div>
     );

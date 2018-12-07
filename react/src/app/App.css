@@ -7,3 +7,7 @@
 .app__query-builder {
     width: 50%;
 }
+
+.app__query-tree {
+    padding-left: 1rem;
+}
